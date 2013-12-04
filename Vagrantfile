@@ -20,6 +20,7 @@ Vagrant::Config.run do |config|
 
   config.vm.define :saltmaster do |config|
     config.vm.box = "precise64"
+	config.vm.box_url = "http://files.vagrantup.com/precise64.box"
     config.vm.network :hostonly, '33.33.33.2'
     config.vm.customize ["modifyvm", :id, "--memory", "256"]
     config.vm.provision :shell do |shell|
@@ -31,6 +32,7 @@ Vagrant::Config.run do |config|
   salt_minions.each do |salt_minion|
     config.vm.define salt_minion["identificator"] do |config|
       config.vm.box = "precise64"
+	  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
       config.vm.network :hostonly, salt_minion["ip"]
       config.vm.customize ["modifyvm", :id, "--memory", "256"]
       config.vm.provision :shell do |shell|
